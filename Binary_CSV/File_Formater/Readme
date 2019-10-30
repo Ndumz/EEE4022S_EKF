@@ -1,0 +1,11 @@
+This a simple NMEA parser for CH robotics UM7 
+
+Files
+1. fileformat.h
+2. fileformat.cpp
+3. main.cpp
+
+
+to run:
+This program takes 2 command line argument (input file name , output file name)
+type ./fileFormat <input filename> <output filename)

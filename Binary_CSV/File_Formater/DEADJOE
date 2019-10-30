@@ -1,0 +1,618 @@
+
+*** These modified files were found in JOE when it aborted on Fri Sep 20 17:58:09 2019
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+b
+k
+
+*** File '(Unnamed)'
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA
+fileFormat.h
+fileFormat.h
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Fri Sep 20 17:58:09 2019
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+b
+k
+
+*** File '(Unnamed)'
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA
+fileFormat.cpp
+fileFormat.cpp
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Sat Sep 21 20:26:11 2019
+*** JOE was aborted because the terminal closed
+
+*** These modified files were found in JOE when it aborted on Sat Sep 21 20:26:11 2019
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+b
+k
+
+*** File '(Unnamed)'
+
+*** File '(Unnamed)'
+b
+k
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA
+fileFormat.
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+fileFormat.h
+
+*** File '(Unnamed)'
+
+*** File '* Startup Log *'
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA
+fileFormat.
+main.cpp
+main.cpp
+main.cpp
+main.cpp
+main.cpp
+main.cpp
+main.cpp
+main.cpp
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Sat Sep 21 20:26:11 2019
+*** JOE was aborted because the terminal closed
+
+*** File 'fileFormat.cpp'
+#include "fileFormat.h"
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
+#include <iostream>
+
+namespace KHMNDU005
+{
+    fileFormat::fileFormat(std::string infile, std::string outfile):inputfile(infile),outputfile(outfile){
+            
+    }
+    
+    fileFormat::~fileFormat(){}
+    
+    void fileFormat::read_write()
+    {
+        std::ifstream in(inputfile);
+        std::string line;
+        std::string::size_type sz;
+        
+        //writing parameters
+        std::ofstream out(outputfile);
+       // out.open(outputfile);
+        out<<"This is me";
+        
+        
+        //tells us how many lines we have gone through , resets at 3 lines
+        int numLines = 0;
+        while(std::getline(in,line))
+        {
+            std::stringstream lineStream(line);
+            std::string cell;
+            //current time
+            std::string currTime = "0";
+            
+            std::getline(lineStream,cell,',');
+           // std::cout<<"First input: "<<cell<<"\n";
+            if(cell == "$PCHRS")
+            {
+                std::vector<std::string> gyro;
+                std::vector<std::string> accel;
+                std::vector<std::string> mag;
+                   
+                std::getline(lineStream,cell,',');
+                //std::cout<<"Sensor: "<<cell<<"\n";
+                if(cell== "0")
+                {
+                    while(std::getline(lineStream,cell,','))
+                    {
+                        gyro.push_back(cell);
+                    }
+                }
+                else if(cell== "1")
+                {
+                 while(std::getline(lineStream,cell,','))
+                    {
+                        accel.push_back(cell);
+                    }
+                }
+                else if(cell== "2")
+                {
+                 while(std::getline(lineStream,cell,','))
+                    {
+                        mag.push_back(cell);
+                    }    
+                }
+                //write line to file
+                for(int i =0;i<gyro.size();i++)
+                {
+                    if((i<gyro.size()-1))
+                    {
+                    out<<gyro[i]<<",";
+                    }
+                    //std::cout<<"GYRO: "<<gyro.size()<<"\n";
+                }
+                
+                for(int i =0 ; i<accel.size();i++)
+                {
+                    if(i<(accel.size()-1))
+                    {
+                    out<<accel[i]<<",";
+                    }
+                }
+                
+                for(int i =0 ; i< mag.size();i++)
+                {
+                     
+                     if(i < mag.size()-2)
+                     {
+                         out<<mag[i]<<",";
+                     }
+                     if(i == (mag.size()-2))
+                     {
+                         out<<mag[i]<<"\n
+                         ";
+                     }
+                }
+                //out<<"\n";
+                //gyro.erase();
+                //accel.erase();
+                //mag.erase();
+                
+                
+            }
+            //out<<"\n";
+        }
+        out.close();
+    }
+    
+
+
+} 
+*** File '(Unnamed)'
+b
+k
+
+*** File '(Unnamed)'
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA
+fileFormat.
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Sat Sep 21 20:26:13 2019
+*** JOE was aborted by UNIX signal 1
+
+*** These modified files were found in JOE when it aborted on Sat Sep 21 20:26:13 2019
+*** JOE was aborted by UNIX signal 1
+
+*** File 'fileFormat.cpp'
+
+*** File 'fileFormat.cpp'
+#include "fileFormat.h"
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
+#include <iostream>
+
+namespace KHMNDU005
+{
+    fileFormat::fileFormat(std::string infile, std::string outfile):inputfile(infile),outputfile(outfile){
+            
+    }
+    
+    fileFormat::~fileFormat(){}
+    
+    void fileFormat::read_write()
+    {
+        std::ifstream in(inputfile);
+        std::string line;
+        std::string::size_type sz;
+        
+        //writing parameters
+        std::ofstream out(outputfile);
+       // out.open(outputfile);
+        out<<"This is me";
+        
+        
+        //tells us how many lines we have gone through , resets at 3 lines
+        int numLines = 0;
+        while(std::getline(in,line))
+        {
+            std::stringstream lineStream(line);
+            std::string cell;
+            //current time
+            std::string currTime = "0";
+            
+            std::getline(lineStream,cell,',');
+           // std::cout<<"First input: "<<cell<<"\n";
+            if(cell == "$PCHRS")
+            {   
+                std::getline(lineStream,cell,',');
+                //std::cout<<"Sensor: "<<cell<<"\n";
+                if(cell== "0")
+                {
+                    while(std::getline(lineStream,cell,','))
+                    {
+                        gyro.push_back(cell);
+                    }
+                }
+                else if(cell== "1")
+                {
+                 while(std::getline(lineStream,cell,','))
+                    {
+                        accel.push_back(cell);
+                    }
+                }
+                else if(cell== "2")
+                {
+                 while(std::getline(lineStream,cell,','))
+                    {
+                        mag.push_back(cell);
+                    }    
+                }
+                //write line to file
+                for(int i =0;i<gyro.size()-1;i++)
+                {
+                    out<<gyro[i]<<",";
+                    //std::cout<<"GYRO: "<<gyro[i]<<"\n";
+                }
+                
+                for(int i =0 ; i<accel.size()-1;i++)
+                {
+                    out<<accel[i]<<",";
+                }
+                
+                for(int i =0 ; i< mag.size()-1#include "fileFormat.h"
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
+#include <iostream>
+
+namespace KHMNDU005
+{
+    fileFormat::fileFormat(std::string infile, std::string outfile):inputfile(infile),outputfile(outfile){
+            
+    }
+    
+    fileFormat::~fileFormat(){}
+    
+    void fileFormat::read_write()
+    {
+        std::ifstream in(inputfile);
+        std::string line;
+        std::string::size_type sz;
+        
+        //writing parameters
+        std::ofstream out(outputfile);
+       // out.open(outputfile);
+        out<<"This is me";
+        
+        
+        //tells us how many lines we have gone through , resets at 3 lines
+        int numLines = 0;
+        while(std::getline(in,line))
+        {
+            std::stringstream lineStream(line);
+            std::string cell;
+            //current time
+            std::string currTime = "0";
+            
+            std::getline(lineStream,cell,',');
+           // std::cout<<"First input: "<<cell<<"\n";
+            if(cell == "$PCHRS")
+            {   
+                std::getline(lineStream,cell,',');
+                //std::cout<<"Sensor: "<<cell<<"\n";
+                if(cell== "0")
+                {
+                    while(std::getline(lineStream,cell,','))
+                    {
+                        gyro.push_back(cell);
+                    }
+                }
+                else if(cell== "1")
+                {
+                 while(std::getline(lineStream,cell,','))
+                    {
+                        accel.push_back(cell);
+                    }
+                }
+                else if(cell== "2")
+                {
+                 while(std::getline(lineStream,cell,','))
+                    {
+                        mag.push_back(cell);
+                    }    
+                }
+                //write line to file
+                for(int i =0;i<gyro.size()-1;i++)
+                {
+                    out<<gyro[i]<<",";
+                    //std::cout<<"GYRO: "<<gyro[i]<<"\n";
+                }
+                
+                for(int i =0 ; i<accel.size()-1;i++)
+                {
+                    out<<accel[i]<<",";
+                }
+                
+                for(int i =0 ; i< mag.size()-1;i++)
+                {
+                     out<<mag[i]<<",\n";
+                }
+                
+                
+            }
+        }
+        out.close();
+    }
+    
+
+
+};i++)
+                {
+                     out<<mag[i]<<",\n";
+                }
+                
+                
+            }
+        }
+        out.close();
+    }
+    
+
+
+}
+*** File '(Unnamed)'
+
+*** File '(Unnamed)'
+b
+k
+b
+k
+
+*** File '(Unnamed)'
+
+*** File '(Unnamed)'
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA
+fileFormat.
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA.cpp
+CEA
+fileFormat.
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+fileFormat.cpp
+
+*** File '* Startup Log *'
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc

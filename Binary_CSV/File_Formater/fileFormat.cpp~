@@ -1,0 +1,40 @@
+#include <string>
+#include <fstream>
+#include <sstream>
+
+
+namespace KHMNDU005
+{
+
+    fileFormat::read_write()
+    {
+        std::ifstream in(inputfile);
+        std::string line;
+        std::sting size_type sz;
+        
+        //tells us how many lines we have gone through , resets at 3 lines
+        int numLines = 0;
+        while(std::getline(in,line))
+        {
+            std::stringstream lineStream(line)
+            std::string cell;
+            //current time
+            std::string currTime = "0";
+            
+            std::getline(lineStream,cell,","))'
+            if(cell = "$PCHRS")
+            {
+                while(std::getline(lineStream,cell,","))
+                {
+                    row.push_back(cell);
+                }
+                
+                //write line to file
+                
+            }
+        }
+    }
+
+
+
+}
